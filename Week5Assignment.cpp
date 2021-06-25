@@ -25,15 +25,56 @@ void ShowUsage() {
 }
 void MakePurchase(int& iTotalSmall, int& iTotalMedium, int& iTotalLarge){
     int number;
-    int letter;
+    char letter;
     cout << "Please enter the quantity and type (S=Small, M=Medium, L=Large) of surfboard you would like to purchase:";
-    cin >> number;
-    cout << number;
+    cin >> number >> letter;
+    switch (letter) {
+        case 'S':
+        case 's':
+            iTotalSmall = iTotalSmall + number;
+            break;
+        case 'M':
+        case 'm':
+            iTotalMedium = iTotalMedium + number;
+            break;
+        case 'L':
+        case 'l':
+            iTotalLarge = iTotalLarge + number;
+            break;
+    }
+
+
+
 }
 
-void DisplayPurchase(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge);
+void DisplayPurchase(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge){
+    string s1 = "The total number of";
+    string s2 = "surfboards is ";
+    if (iTotalSmall > 0)
+        cout << s1 << " small " << s2 << iTotalSmall << endl;
+    if (iTotalMedium > 0)
+        cout << s1 << " medium " << s2 << iTotalMedium << endl;
+    if (iTotalLarge > 0)
+        cout << s1 << " large " << s2 << iTotalLarge << endl;
+}
 // function to show the number of surfboards of each size sold.
-void DisplayTotal(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge);
+void DisplayTotal(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge) {
+    float small = iTotalSmall * 175.00;
+    float medium = iTotalMedium * 190.00;
+    float large = iTotalLarge * 200.00;
+    string s1 = "The total number of";
+    string s2 = "surfboards is ";
+    string total = " at a total of ";
+    cout << fixed << setprecision(2);
+    float totalSurfboardCost = small + medium + large;
+    if (iTotalSmall > 0)
+        cout << s1 << " small " << s2 << iTotalSmall << total << "$" << small << endl;
+    if (iTotalMedium > 0)
+        cout << s1 << " medium " << s2 << iTotalMedium << total << "$" << medium << endl;
+    if (iTotalLarge > 0)
+        cout << s1 << " large " << s2 << iTotalLarge << total << "$" << large << endl;
+    cout << "Amount due: " << "$" << totalSurfboardCost << endl;
+}
 // a function to show the total amount of money made.
 
 
@@ -58,11 +99,11 @@ int main() {
                 break;
             case 'C':
             case 'c':
-                //DisplayPurchase();
+                DisplayPurchase(int (iTotalSmall), int(iTotalMedium), int(iTotalLarge));
                 break;
             case 'T':
             case 't':
-                //DisplayTotal();
+                DisplayTotal(int (iTotalSmall), int(iTotalMedium), int(iTotalLarge));
                 break;
             case 'Q':
             case 'q':
@@ -70,7 +111,6 @@ int main() {
             default:
                 return -1;
         }
-
-
     }
 }
+
