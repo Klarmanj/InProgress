@@ -46,6 +46,9 @@ void MakePurchase(int& iTotalSmall, int& iTotalMedium, int& iTotalLarge){
 
 
 }
+void amountDue( float (totalSurfboardCost)){
+    cout << "Amount due: " << "$" << totalSurfboardCost << endl;
+}
 
 void DisplayPurchase(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge){
     string s1 = "The total number of";
@@ -56,6 +59,8 @@ void DisplayPurchase(const int iTotalSmall, const int iTotalMedium, const int iT
         cout << s1 << " medium " << s2 << iTotalMedium << endl;
     if (iTotalLarge > 0)
         cout << s1 << " large " << s2 << iTotalLarge << endl;
+    if (iTotalSmall == 0 && iTotalMedium == 0 && iTotalLarge == 0)
+        cout << "No purchases made yet." << endl;
 }
 // function to show the number of surfboards of each size sold.
 void DisplayTotal(const int iTotalSmall, const int iTotalMedium, const int iTotalLarge) {
@@ -67,13 +72,17 @@ void DisplayTotal(const int iTotalSmall, const int iTotalMedium, const int iTota
     string total = " at a total of ";
     cout << fixed << setprecision(2);
     float totalSurfboardCost = small + medium + large;
-    if (iTotalSmall > 0)
-        cout << s1 << " small " << s2 << iTotalSmall << total << "$" << small << endl;
-    if (iTotalMedium > 0)
-        cout << s1 << " medium " << s2 << iTotalMedium << total << "$" << medium << endl;
-    if (iTotalLarge > 0)
-        cout << s1 << " large " << s2 << iTotalLarge << total << "$" << large << endl;
-    cout << "Amount due: " << "$" << totalSurfboardCost << endl;
+    if (iTotalSmall != 0 || iTotalMedium != 0 || iTotalLarge != 0) {
+        if (iTotalSmall > 0)
+            cout << s1 << " small " << s2 << iTotalSmall << total << "$" << small << endl;
+        if (iTotalMedium > 0)
+            cout << s1 << " medium " << s2 << iTotalMedium << total << "$" << medium << endl;
+        if (iTotalLarge > 0)
+            cout << s1 << " large " << s2 << iTotalLarge << total << "$" << large << endl;
+        cout << "Amount due: " << "$" << totalSurfboardCost << endl;
+    }
+    if (iTotalSmall == 0 && iTotalMedium == 0 && iTotalLarge == 0)
+        cout << "No purchases made yet." << endl;
 }
 // a function to show the total amount of money made.
 
